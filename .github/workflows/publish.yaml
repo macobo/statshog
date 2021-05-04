@@ -58,12 +58,6 @@ jobs:
           sed -i 's/^__version__ = "\(.*\)"$/__version__ = "${{ steps.new-version.outputs.new-version }}"/g' statshog/__init__.py
           cat statshog/__init__.py
 
-      - name: Commit bump
-        if: steps.bump-type.outputs.bump-type != 'null'
-        uses: EndBug/add-and-commit@v7
-        with:
-            branch: ${{ github.event.pull_request.base.ref }}
-            message: 'Bump version to ${{ steps.new-version.outputs.new-version }}'
 
       - name: Install pypa/build
         run: >-
@@ -86,8 +80,15 @@ jobs:
           password: ${{ secrets.TEST_PYPI_API_TOKEN }}
           repository_url: https://test.pypi.org/legacy/
 
-      # - name: Publish distribution 📦 to PyPI
-      #   if: steps.bump-type.outputs.bump-type != 'null'
-      #   uses: pypa/gh-action-pypi-publish@master
-      #   with:
-      #     password: ${{ secrets.PYPI_API_TOKEN }}
+      - name: Publish distribution 📦 to PyPI
+        if: steps.bump-type.outputs.bump-type != 'null'
+        uses: pypa/gh-action-pypi-publish@master
+        with:
+          password: ${{ secrets.PYPI_API_TOKEN }}
+
+      - name: Commit bump
+        if: steps.bump-type.outputs.bump-type != 'null'
+        uses: EndBug/add-and-commit@v7
+        with:
+            branch: ${{ github.event.pull_request.base.ref }}
+            message: 'Bump version to ${{ steps.new-version.outputs.new-version }}'
