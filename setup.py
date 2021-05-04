@@ -1,11 +1,12 @@
 from setuptools import find_packages, setup
-
+from statshog import __version__
 
 setup(
     name='statshog',
-    version='1.0.0',
+    version=__version__,
     description='A simple statsd client.',
     long_description=open('README.md').read(),
+    long_description_content_type='text/markdown',
     author='Karl-Aksel Puulmann',
     author_email='karl@technicalwealth.ee',
     url='https://github.com/macobo/statshog',
