@@ -65,10 +65,26 @@ statsd = statshog.StatsClient(telegraf=True)
 statsd.timing('stats.timed', 320, tags={"mytag": 456})
 ```
 
-## django-statsd
+## Usage with django
+
+Update your settings.py to have the following values:
+- `STATSD_HOST`
+- `STATSD_PORT`
+- `STATSD_PREFIX`
+- `STATSD_MAXUDPSIZE`
+- `STATSD_IPV6`
+- `STATSD_TELEGRAF`
+
+Then, you can use statshog as following:
+
+```python
+from statshog.defaults.django import statsd
+
+statsd.timing('stats.timed', 320)
+```
 
 To use together with
-[django-statsd](<https://github.com/django-statsd/django-statsd>), add
+[django-statsd](<https://github.com/django-statsd/django-statsd>), also add
 the following to your `settings.py`:
 
 ```
