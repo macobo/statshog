@@ -13,6 +13,7 @@ setup(
     license='MIT',
     packages=find_packages(),
     include_package_data=True,
+    zip_safe=False,
     package_data={'': ['README.md']},
     test_suite='nose.collector',
     classifiers=[
