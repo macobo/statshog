@@ -5,7 +5,7 @@ from statshog import defaults
 from statshog.client import StatsClient
 
 
-statsd = None
+statsd: StatsClient = None # type: ignore
 
 if statsd is None:
     host = getattr(settings, "STATSD_HOST", defaults.HOST)
