@@ -13,6 +13,7 @@ class StatsClientBase(object):
 
     _prefix: Union[str, None]
     _telegraf: bool
+    _separator: str
 
     def close(self):
         """Used to close and clean up any underlying resources."""
@@ -85,7 +86,7 @@ class StatsClientBase(object):
             value = "%s|@%s" % (value, rate)
 
         if self._prefix:
-            stat = "%s.%s" % (self._prefix, stat)
+            stat = f"{self._prefix}{self._separator}{stat}"
 
         if tags:
             if self._telegraf:

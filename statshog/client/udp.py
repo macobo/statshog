@@ -19,6 +19,7 @@ class StatsClient(StatsClientBase):
         maxudpsize: int = 512,
         ipv6: bool = False,
         telegraf: bool = False,
+        separator: str = '.'
     ):
         """Create a new client."""
         fam = socket.AF_INET6 if ipv6 else socket.AF_INET
@@ -30,6 +31,7 @@ class StatsClient(StatsClientBase):
         self._prefix = prefix
         self._maxudpsize = maxudpsize
         self._telegraf = telegraf
+        self._separator = separator
 
     def _send(self, data: str):
         """Send data to statsd."""

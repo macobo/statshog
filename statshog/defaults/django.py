@@ -14,6 +14,7 @@ if statsd is None:
     maxudpsize = getattr(settings, "STATSD_MAXUDPSIZE", defaults.MAXUDPSIZE)
     ipv6 = getattr(settings, "STATSD_IPV6", defaults.IPV6)
     telegraf = getattr(settings, "STATSD_TELEGRAF", defaults.TELEGRAF)
+    separator = getattr(settings, "STATSD_SEPARATOR", defaults.SEPARATOR)
     statsd = StatsClient(
-        host=host, port=port, prefix=prefix, maxudpsize=maxudpsize, ipv6=ipv6, telegraf=telegraf
+        host=host, port=port, prefix=prefix, maxudpsize=maxudpsize, ipv6=ipv6, telegraf=telegraf, separator=separator
     )

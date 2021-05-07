@@ -67,13 +67,14 @@ statsd.timing('stats.timed', 320, tags={"mytag": 456})
 
 ## Usage with django
 
-Update your settings.py to have the following values:
-- `STATSD_HOST`
-- `STATSD_PORT`
-- `STATSD_PREFIX`
-- `STATSD_MAXUDPSIZE`
-- `STATSD_IPV6`
-- `STATSD_TELEGRAF`
+Update your settings.py to have the following values if using non-defaults:
+- `STATSD_HOST` (default: `'localhost'`)
+- `STATSD_PORT` (default: `8125`)
+- `STATSD_PREFIX` (default: `None`)
+- `STATSD_MAXUDPSIZE` (default: `512`)
+- `STATSD_IPV6` (default: `False`)
+- `STATSD_TELEGRAF` (default: `False`)
+- `STATSD_SEPARATOR` (default: `'.'`)
 
 Then, you can use statshog as following:
 
@@ -87,6 +88,6 @@ To use together with
 [django-statsd](<https://github.com/django-statsd/django-statsd>), also add
 the following to your `settings.py`:
 
-```
+```python
 STATSD_CLIENT = "statshog"
 ```

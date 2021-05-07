@@ -14,6 +14,7 @@ if statsd is None:
     maxudpsize = int(os.getenv("STATSD_MAXUDPSIZE", defaults.MAXUDPSIZE))
     ipv6 = bool(int(os.getenv("STATSD_IPV6", defaults.IPV6)))
     telegraf = bool(int(os.getenv("STATSD_TELEGRAF", defaults.TELEGRAF)))
+    separator = os.getenv("STATSD_SEPARATOR", defaults.SEPARATOR)
     statsd = StatsClient(
-        host=host, port=port, prefix=prefix, maxudpsize=maxudpsize, ipv6=ipv6, telegraf=telegraf
+        host=host, port=port, prefix=prefix, maxudpsize=maxudpsize, ipv6=ipv6, telegraf=telegraf, separator=separator
     )
