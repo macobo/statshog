@@ -49,6 +49,7 @@ class TCPStatsClient(StreamClientBase):
         timeout: Union[float, None] = None,
         ipv6: bool = False,
         telegraf: bool = False,
+        separator: str = '.'
     ):
         """Create a new client."""
         self._host = host
@@ -58,6 +59,7 @@ class TCPStatsClient(StreamClientBase):
         self._prefix = prefix
         self._sock = None
         self._telegraf = telegraf
+        self._separator = separator
 
     def connect(self):
         fam = socket.AF_INET6 if self._ipv6 else socket.AF_INET
@@ -78,6 +80,7 @@ class UnixSocketStatsClient(StreamClientBase):
         prefix: Union[str, None] = None,
         timeout: Union[float, None] = None,
         telegraf: bool = False,
+        separator: str = '.'
     ):
         """Create a new client."""
         self._socket_path = socket_path
@@ -85,6 +88,7 @@ class UnixSocketStatsClient(StreamClientBase):
         self._prefix = prefix
         self._sock = None
         self._telegraf = telegraf
+        self._separator = separator
 
     def connect(self):
         self._sock = socket.socket(socket.AF_UNIX, socket.SOCK_STREAM)

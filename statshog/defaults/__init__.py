@@ -4,3 +4,4 @@ IPV6 = False
 PREFIX = None
 MAXUDPSIZE = 512
 TELEGRAF = False
+SEPARATOR = '.'
